@@ -7,7 +7,7 @@
             [taggy.states.events :as events]))
 
 
-(defn input-control
+(defn- control
   [type]
   (let [id (gensym)]
     [:> Autocomplete {:id (str "input id : " id)
@@ -22,3 +22,15 @@
                                       (set! (.-variant params) "outlined")
                                       (set! (.-label params) "Select Tags")
                                       (ra/create-element TextField params))}]))
+
+(defn controls
+  [type]
+  (let [n (ra/atom 1)]
+    (fn []
+      [:<>
+       (for [nth (range @n)]
+         ^{:key nth}[control type])
+       
+       [:button
+        {:on-click #(swap! n inc)}
+        "Add"]])))
