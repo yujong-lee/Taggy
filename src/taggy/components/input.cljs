@@ -6,7 +6,6 @@
             [taggy.states.subs :as subs]
             [taggy.states.events :as events]))
 
-
 (defn- control
   [type]
   (let [id (gensym)]
@@ -27,7 +26,8 @@
   [type]
   (let [initial-number-of-controls 1
         n (ra/atom initial-number-of-controls)]
-    (fn []
+    
+    (fn [type]
       [:<>
        (for [nth (range @n)]
          ^{:key nth}[control type])
