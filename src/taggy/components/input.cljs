@@ -25,7 +25,8 @@
 
 (defn controls
   [type]
-  (let [n (ra/atom 1)]
+  (let [initial-number-of-controls 1
+        n (ra/atom initial-number-of-controls)]
     (fn []
       [:<>
        (for [nth (range @n)]
