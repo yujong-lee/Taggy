@@ -1,0 +1,230 @@
+; This is the Calva evaluation results output window.
+; TIPS: The keyboard shortcut `ctrl+alt+c o` shows and focuses this window
+;   when connected to a REPL session.
+; Please see https://calva.io/output/ for more info.
+; Happy coding! ♥️
+
+; Connecting ...
+; Hooking up nREPL sessions...
+; Connected session: clj
+; TIPS: 
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+clj꞉shadow.user꞉>  ; Use `alt+enter` to evaluate
+; Creating cljs repl session...
+; Connecting cljs repl: shadow-cljs...
+;   The Calva Connection Log might have more connection progress information.
+; Connected session: cljs, repl: :app
+; TIPS: You can choose which REPL to use (clj or cljs):
+;    *Calva: Toggle REPL connection*
+;    (There is a button in the status bar for this)
+3
+cljs꞉taggy.states.db꞉>  ; Use `alt+enter` to evaluate
+nil
+; ------ WARNING - :undeclared-ns ------------------------------------------------
+;  Resource: <eval>:4:15
+ No such namespace: set, could not locate set.cljs, set.cljc, or JavaScript source providing "set"
+--------------------------------------------------------------------------------
+
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:4:15
+ Use of undeclared Var set/difference
+--------------------------------------------------------------------------------
+
+; ------ WARNING - :undeclared-ns ------------------------------------------------
+;  Resource: <eval>:4:15
+ No such namespace: set, could not locate set.cljs, set.cljc, or JavaScript source providing "set"
+--------------------------------------------------------------------------------
+
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:4:15
+ Use of undeclared Var set/difference
+--------------------------------------------------------------------------------
+
+cljs꞉taggy.states.db꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:1:12
+ Use of undeclared Var taggy.states.db/clojure
+--------------------------------------------------------------------------------
+
+cljs꞉taggy.states.db꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:1:12
+ Use of undeclared Var taggy.states.db/clojure
+--------------------------------------------------------------------------------
+
+cljs꞉taggy.states.db꞉> 
+nil
+cljs꞉taggy.states.db꞉> 
+nil
+cljs꞉taggy.states.db꞉> 
+:repl/exception!
+; 
+; Execution error (Error) at (<cljs repl>:1).
+function (meta,cnt,arr,__hash){
+this.meta = meta;
+this.cnt = cnt;
+this.arr = arr;
+this.__hash = __hash;
+this.cljs$lang$protocol_mask$partition0$ = 16647951;
+this.cljs$lang$protocol_mask$partition1$ = 139268;
+} is not ISeqable
+cljs꞉taggy.states.db꞉> 
+:repl/exception!
+; 
+; Execution error (Error) at (<cljs repl>:1).
+function (meta,cnt,arr,__hash){
+this.meta = meta;
+this.cnt = cnt;
+this.arr = arr;
+this.__hash = __hash;
+this.cljs$lang$protocol_mask$partition0$ = 16647951;
+this.cljs$lang$protocol_mask$partition1$ = 139268;
+} is not ISeqable
+cljs꞉taggy.states.db꞉> 
+(:0 :1 :2 :3 :4 :0 :1 :2 :3 :4)
+cljs꞉taggy.states.db꞉> 
+(#{} #{})
+cljs꞉taggy.states.db꞉> 
+{:0 {:title "task0", :tags ["one" "two"]}, :1 {:title "task1", :tags ["two"]}, :2 {:title "task2", :tags ["three"]}, :3 {:title "task3", :tags ["one" "three"]}, :4 {:title "task4", :tags ["one" "two"]}}
+cljs꞉taggy.states.db꞉> 
+#'taggy.states.db/default-db
+cljs꞉taggy.states.db꞉> 
+(:0 :1 :2 :3 :4 :0 :1 :2 :3 :4)
+cljs꞉taggy.states.db꞉> 
+#'taggy.states.db/default-db
+cljs꞉taggy.states.db꞉> 
+(:0 :1 :2 :3 :4 :0 :1 :2 :3 :4)
+cljs꞉taggy.states.db꞉> 
+#{[1 2 1]}
+cljs꞉taggy.states.db꞉> 
+:repl/print-error!
+; The result object failed to print. It is available via *1 if you want to interact with it.
+; The exception was: 
+; Error: :0 is not ISeqable
+cljs꞉taggy.states.db꞉> 
+#'taggy.states.db/default-db
+cljs꞉taggy.states.db꞉> 
+:repl/print-error!
+; The result object failed to print. It is available via *1 if you want to interact with it.
+; The exception was: 
+; Error: :0 is not ISeqable
+cljs꞉taggy.states.db꞉> 
+(#{:0} #{:1} #{:2} #{:3} #{:4} #{:0} #{:1} #{:2} #{:3} #{:4})
+cljs꞉taggy.states.db꞉> 
+(:0 :1 :2 :3 :4 :0 :1 :2 :3 :4)
+cljs꞉taggy.states.db꞉> 
+#'taggy.states.db/default-db
+cljs꞉taggy.states.db꞉> 
+(:0 :3 :4 :0 :1 :4)
+cljs꞉taggy.states.db꞉> 
+#{(:0 :3 :4 :0 :1 :4)}
+cljs꞉taggy.states.db꞉> 
+#{(:0 :3 :4 :0 :1 :4)}
+cljs꞉taggy.states.db꞉> 
+#{:0 :4 :1 :3}
+cljs꞉taggy.states.db꞉> 
+#{:0 :4 :1 :3}
+cljs꞉taggy.states.db꞉> 
+#{:0 :4 :1 :3}
+cljs꞉taggy.states.db꞉> 
+#{:0 :4 :1 :3}
+cljs꞉taggy.states.db꞉> 
+#{nil}
+cljs꞉taggy.states.db꞉> 
+#{nil}
+cljs꞉taggy.states.db꞉> 
+#{:0 :4 :1 :3}
+cljs꞉taggy.states.db꞉> 
+(2 3 4)
+cljs꞉taggy.states.db꞉> 
+#{:0 :4 :1 :3}
+cljs꞉taggy.states.db꞉> 
+#{:0 :4 :1 :3}
+cljs꞉taggy.states.db꞉> 
+#object[re_frame$subs$subs_handler_fn]
+cljs꞉taggy.states.subs꞉> 
+#'taggy.states.db/default-db
+cljs꞉taggy.states.db꞉> 
+#'taggy.states.db/default-db
+cljs꞉taggy.states.db꞉> 
+nil
+cljs꞉taggy.states.db꞉> 
+#'taggy.components.items/items
+cljs꞉taggy.components.items꞉> 
+#object[re_frame$subs$subs_handler_fn]
+cljs꞉taggy.states.subs꞉> 
+#'taggy.components.items/item
+cljs꞉taggy.components.items꞉> 
+#object[re_frame$subs$subs_handler_fn]
+cljs꞉taggy.states.subs꞉> 
+({:id :coeffects, :before #object[re_frame$cofx$coeffects_before], :after nil} {:id :do-fx, :before nil, :after #object[re_frame$fx$do_fx_after]} {:id :inject-global-interceptors, :before #object[re_frame$std_interceptors$inject_global_interceptors_before], :after nil} {:id :db-handler, :before #object[re_frame$std_interceptors$db_handler__GT_interceptor_$_db_handler_before], :after nil})
+cljs꞉taggy.states.events꞉> 
+#'taggy.components.input/input-control
+cljs꞉taggy.components.input꞉> 
+#'taggy.components.input/input-control
+cljs꞉taggy.components.input꞉> 
+#'taggy.components.input/input-control
+cljs꞉taggy.components.input꞉> 
+#'taggy.components.input/input-control
+cljs꞉taggy.components.input꞉> 
+#'taggy.components.input/input-control
+cljs꞉taggy.components.input꞉> 
+#'taggy.components.input/input-control
+cljs꞉taggy.components.input꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:1:2
+ Use of undeclared Var taggy.states.subs/all
+--------------------------------------------------------------------------------
+
+cljs꞉taggy.states.subs꞉> 
+#object[re_frame$subs$subs_handler_fn]
+cljs꞉taggy.states.subs꞉> 
+false
+cljs꞉taggy.states.subs꞉> 
+false
+cljs꞉taggy.states.subs꞉> 
+false
+cljs꞉taggy.states.subs꞉> 
+false
+cljs꞉taggy.states.subs꞉> 
+true
+cljs꞉taggy.states.subs꞉> 
+true
+cljs꞉taggy.states.subs꞉> 
+true
+cljs꞉taggy.states.subs꞉> 
+true
+cljs꞉taggy.states.subs꞉> 
+nil
+cljs꞉taggy.states.subs꞉> 
+(1)
+cljs꞉taggy.states.subs꞉> 
+nil
+cljs꞉taggy.states.subs꞉> 
+nil
+cljs꞉taggy.states.subs꞉> 
+(1)
+cljs꞉taggy.states.subs꞉> 
+#'taggy.states.db/default-db
+cljs꞉taggy.states.db꞉> 
+{:0 #{"one"}}
+cljs꞉taggy.states.db꞉> 
+#'taggy.states.db/default-db
+cljs꞉taggy.states.db꞉> 
+{:0 #{"one"}, :1 #{"two"}}
+cljs꞉taggy.states.db꞉> 
+(#{"one"} #{"two"})
+cljs꞉taggy.states.db꞉> 
+(:0 :1)
+cljs꞉taggy.states.db꞉> 
+#'taggy.states.db/default-db
+cljs꞉taggy.states.db꞉> 
+; nREPL Connection was closed
