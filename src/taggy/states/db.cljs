@@ -5,10 +5,10 @@
    :field-ids [:0]
    :field-values {}
 
-   :current-type {:id :0 :label :item}
+   :current-type {:id :1 :label :item}
 
-   :all-types [{:id :0 :label :item}
-               {:id :1 :label :abcd}]
+   :all-types [{:id :1 :label :item}
+               {:id :2 :label :abcd}]
    :all-tags {:item #{"one" "two" "three"}
               :abcd #{"A" "B" "C"}}
 

@@ -19,7 +19,7 @@
    db/default-db))
 
 (rf/reg-event-db
- ::update-field
+ ::update-field ;; Todo : better name like I did "select-tab"?
  (fn [db [_ id value]]
    (assoc-in db [:field-values id] (into #{} value))))
 
@@ -35,16 +35,19 @@
    (assoc-in db [:data type id] data)))
 
 (rf/reg-event-db
- ::update-current-type
+ ::select-tab
  (fn [db [_ new-type-id]]
    (let [types           (:all-types db)
-         new-type-label  (-> #(= new-type-id (:id %1))
-                             (filter types)
-                             first
-                             :label)]
-
-     (assoc-in db [:current-type] {:id new-type-id
-                                   :label new-type-label}))))
+         new-type-label  (if (= new-type-id :0)
+                           :+ ;; Todo
+                           (-> #(= new-type-id (:id %1))
+                               (filter types)
+                               first
+                               :label))]
+     (if (= new-type-label :+)
+       (update-in db [:all-types] #(conj %1 {:id :new :label :new})) ;; Todo
+       (assoc-in db [:current-type] {:id new-type-id
+                                     :label new-type-label})))))
 
 (rf/reg-event-db
  ::update-all-types
