@@ -12,9 +12,10 @@
   (let [_ (gensym)
         home "taggy.states.subs/"
         params (map gensym sub-path)
-        full-path (vec (cons (keyword base) params))]
+        full-path (-> base keyword (cons params) vec)]
     
     `(rf/reg-sub
       ~(keyword (str home base))
-      (fn [db# ~(into [] (cons _ params))]
+      (fn [db# 
+           ~(->> params (cons _) (into []))]
         (get-in db# ~full-path)))))
