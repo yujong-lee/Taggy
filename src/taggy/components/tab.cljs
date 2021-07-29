@@ -1,6 +1,7 @@
 (ns taggy.components.tab
   (:require [re-frame.core :as rf]
             [re-com.core :refer [button horizontal-tabs]]
+            
             [taggy.states.events :as events]
             [taggy.states.subs :as subs]))
 
