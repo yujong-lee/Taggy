@@ -4,9 +4,9 @@
    [taggy.states.db :as db]))
 
 (defn inc-id
-  [keyword]
+  [id]
   (->
-   keyword
+   id
    name
    js/parseInt
    inc
@@ -20,8 +20,14 @@
 
 (rf/reg-event-db
  ::update-field
- (fn [db [_ type id value]]
-   (assoc-in db [:field type id] (into #{} value))))
+ (fn [db [_ id value]]
+   (assoc-in db [:field-values id] (into #{} value))))
+
+(rf/reg-event-db
+ ::add-field
+ (fn [db _]
+   (update-in db [:field-ids]
+              #(vec (conj %1 (-> %1 last inc-id))))))
 
 (rf/reg-event-db
  ::update-data
@@ -37,5 +43,5 @@
                    (apply concat)
                    (into #{}))
          data (merge additional {:title title :tags tags})]
-     (assoc-in db [:data type]  data)
+     (assoc-in db [:datas type]  data)
      (assoc-in db [:next-id id] (inc-id id)))))

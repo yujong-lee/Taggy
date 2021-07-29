@@ -7,15 +7,15 @@
  ::item
  (fn [db [_ type id]]
    (-> db
-       :data
+       :datas
        type
        id)))
 
 (rf/reg-sub
  ::filtered
  (fn [db [_ type]]
-   (let [ids (for [item (-> db :data type)
-                   field-tags (-> db :field type vals)
+   (let [ids (for [item (-> db :datas type)
+                   field-tags (-> db :field-values vals)
                    :let [item-tags (:tags (second item))
                          item-id (first item)]
                    :when (and (seq field-tags)
@@ -24,12 +24,17 @@
      (into #{} ids))))
 
 (rf/reg-sub
- ::field
- (fn [db [_ type id]]
+ ::field-values
+ (fn [db [_ id]]
    (-> db
-       :field
-       type
+       :field-values
        id)))
+
+(rf/reg-sub
+ ::field-ids
+ (fn [db _]
+   (-> db
+       :field-ids)))
 
 (rf/reg-sub
  ::all-tags

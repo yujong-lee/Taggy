@@ -2,10 +2,12 @@
 
 (def default-db
   {:next-id :10
+   :field-ids [:0]
+   :field-values {}
    :all-tags {:item #{"one" "two" "three"}
               :abcd #{"A" "B" "C"}}
-   :field {}
-   :data {:item {:0 {:title "task0" :tags #{"one" "two"}}
+
+   :datas {:item {:0 {:title "task0" :tags #{"one" "two"}}
                  :1 {:title "task1" :tags #{"two"}}
                  :2 {:title "task2" :tags #{"three"}}
                  :3 {:title "task3" :tags #{"one" "three"}}

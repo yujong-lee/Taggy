@@ -7,31 +7,27 @@
             [taggy.states.events :as events]))
 
 (defn- control
-  [type]
-  (let [id (gensym)]
-    [:> Autocomplete {:id (str "input id : " id)
-                      :style {:width 600}
-                      :multiple true
-                      :free-solo true
-                      :filter-selected-options true
+  [type id]
+  [:> Autocomplete {:id (str "input id : " (name id))
+                    :style {:width 600}
+                    :multiple true
+                    :free-solo true
+                    :filter-selected-options true
 
-                      :options @(rf/subscribe [::subs/all-tags type])
-                      :on-change #(rf/dispatch [::events/update-field type id %2])
-                      :render-input (fn [^js params]
-                                      (set! (.-variant params) "outlined")
-                                      (set! (.-label params) "Select Tags")
-                                      (ra/create-element TextField params))}]))
+                    :options @(rf/subscribe [::subs/all-tags type])
+                    :on-change #(rf/dispatch [::events/update-field id %2])
+                    :render-input (fn [^js params]
+                                    (set! (.-variant params) "outlined")
+                                    (set! (.-label params) "Select Tags")
+                                    (ra/create-element TextField params))}])
 
 (defn controls
   [type]
-  (let [initial-number-of-controls 1
-        n (ra/atom initial-number-of-controls)]
-    
-    (fn [type]
-      [:<>
-       (for [nth (range @n)]
-         ^{:key nth}[control type])
-       
-       [:button
-        {:on-click #(swap! n inc)}
-        "Add"]])))
+  (let [ids @(rf/subscribe [::subs/field-ids])]
+    [:<>
+     (for [id ids]
+       ^{:key id} [control type id])
+
+     [:button
+      {:on-click #(rf/dispatch [::events/add-field])}
+      "Add"]]))
