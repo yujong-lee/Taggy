@@ -39,8 +39,3 @@
          data (merge additional {:title title :tags tags})]
      (assoc-in db [:data type]  data)
      (assoc-in db [:next-id id] (inc-id id)))))
-
-(rf/reg-event-db
- ::update-type
- (fn [db [_ type]]
-   (assoc-in db [:current-type] type)))

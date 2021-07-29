@@ -32,11 +32,6 @@
        id)))
 
 (rf/reg-sub
- ::current-type
- (fn [db _]
-   (:current-type db)))
-
-(rf/reg-sub
  ::all-tags
  (fn [db [_ type]]
    (-> db

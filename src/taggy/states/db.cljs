@@ -2,7 +2,6 @@
 
 (def default-db
   {:next-id :10
-   :current-type :item
    :all-tags {:item #{"one" "two" "three"}
               :abcd #{"A" "B" "C"}}
    :field {}
