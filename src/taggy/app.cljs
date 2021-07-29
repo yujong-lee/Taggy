@@ -1,20 +1,22 @@
 (ns taggy.app
   (:require
-   [reagent.core :as ra]
+   [re-frame.core :as rf]
    [taggy.components.input :as input]
-   [taggy.components.items :refer [items]]))
+   [taggy.components.items :refer [items]]
+   [taggy.states.events :as events]
+   [taggy.states.subs :as subs]))
 
 (defn app
   []
-  (let [type (ra/atom :item)]
-    (fn []
+  (let [type @(rf/subscribe [::subs/current-type])]
       [:<>
-       [input/controls @type]
-       [items @type]
+       [input/controls type]
+       [items type]
+
        [:button
-        {:on-click #(reset! type :abcd)}
+        {:on-click #(rf/dispatch [::events/update-current-type :abcd])}
         "abcd"]
-       
+
        [:button
-        {:on-click #(reset! type :item)}
-        "item"]])))
+        {:on-click #(rf/dispatch [::events/update-current-type :item])}
+        "item"]]))
