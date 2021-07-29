@@ -9,7 +9,11 @@
 
 (reg-sub-getter "all-tags" ["type"])
 
+(reg-sub-getter "all-types" [])
+
 (reg-sub-getter "current-type" [])
+
+(reg-sub-getter "current-type-id" [])
 
 (reg-sub-getter "field-ids" [])
 (reg-sub-getter "field-values" ["id"])

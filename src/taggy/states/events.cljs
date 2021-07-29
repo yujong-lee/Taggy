@@ -34,19 +34,32 @@
  (fn [db [_ type id data]]
    (assoc-in db [:data type id] data)))
 
-(rf/reg-event-db
- ::add-data
- (fn [db [_ type title additional]]
-   (let [id (:next-id db)
-         tags (->> (type db)
-                   vals
-                   (apply concat)
-                   (into #{}))
-         data (merge additional {:title title :tags tags})]
-     (assoc-in db [:datas type]  data)
-     (assoc-in db [:next-id id] (inc-id id)))))
+;; (rf/reg-event-db
+;;  ::add-data
+;;  (fn [db [_ type title additional]]
+;;    (let [id (:next-id db)
+;;          tags (->> (type db)
+;;                    vals
+;;                    (apply concat)
+;;                    (into #{}))
+;;          data (merge additional {:title title :tags tags})]
+;;      (assoc-in db [:datas type]  data)
+;;      (assoc-in db [:next-id id] (inc-id id)))))
 
 (rf/reg-event-db
  ::update-current-type
- (fn [db [_ new-type]]
-   (assoc-in db [:current-type] new-type)))
+ (fn [db [_ new-type-id]]
+   (let [types           (:all-types db)
+         new-type-label  (-> #(= new-type-id (:id %))
+                             (filter types)
+                             first
+                             :label)]
+
+     (assoc-in db [:current-type] {:id new-type-id
+                                   :label new-type-label}))))
+
+
+(rf/reg-event-db
+ ::update-all-types
+ (fn [db [_ types]]
+   (assoc-in db [:all-types] types)))

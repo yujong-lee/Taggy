@@ -1,30 +1,23 @@
 (ns taggy.components.tab
-  (:require [reagent.core :as ra]
-            [re-frame.core :as rf]
+  (:require [re-frame.core :as rf]
+            [re-com.core :refer [button horizontal-tabs]]
             [taggy.states.events :as events]
-            [re-com.core :refer [button horizontal-tabs]]))
+            [taggy.states.subs :as subs]))
 
 (defn tab
   []
-  (let [tab-defs        (ra/atom [{:id ::1 :label :item}
-                                  {:id ::2 :label :abcd}])
-        selected-tab-id (ra/atom (:id (first @tab-defs)))]
-    (fn []
-      [:<>
-       [horizontal-tabs
-        :model     selected-tab-id
-        :tabs      tab-defs
-        :on-change (fn [new-id]
-                     (rf/dispatch [::events/update-current-type
-                                   (-> #(= new-id (:id %))
-                                       (filter @tab-defs)
-                                       first
-                                       :label)])
-                     (reset! selected-tab-id new-id))]
-       [button
-        :label "Add"
-        :on-click (fn []
-                    (let [c       (str (inc (count @tab-defs)))
-                          new-tab {:id (keyword c) :label c}]
-                      (swap! tab-defs conj new-tab)))]])))
-
+  (let [tabs                   @(rf/subscribe [::subs/all-types])
+        {selected-tab-id :id}  @(rf/subscribe [::subs/current-type])]
+    [:<>
+     [horizontal-tabs
+      :model      selected-tab-id
+      :tabs       tabs
+      :on-change  #(rf/dispatch [::events/update-current-type %1])]
+     
+     [button
+      :label "Add"
+      :on-click (fn []
+                  (let [c       (-> tabs count inc str)
+                        new-tab {:id (keyword c) :label c}
+                        new-tabs (conj tabs new-tab)]
+                    (rf/dispatch [::events/update-all-types new-tabs])))]]))

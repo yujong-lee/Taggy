@@ -8,7 +8,7 @@
 
 (defn app
   []
-  (let [type @(rf/subscribe [::subs/current-type])]
+  (let [{type :label} @(rf/subscribe [::subs/current-type])]
       [:<>
        [tab]
        [input/controls type]
