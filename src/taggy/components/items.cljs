@@ -10,16 +10,20 @@
      [:div element])])
 
 (defn- item
-  [type id]
-  (let [data @(rf/subscribe [::subs/datas type id])]
-    [:<>
-     [:h4 (:title data)]
-     [tag-list (:tags data)]]))
+  ([type id]
+     (item @(rf/subscribe [::subs/datas type id])))
+
+  ([data]
+   [:<>
+    [:h4 (:title data)]
+    [tag-list (:tags data)]]))
 
 (defn items
-  [type]
-  [:ul
-   (let [ids @(rf/subscribe [::subs/filtered type])]
-     (for [id ids]
-       ^{:key id}
-       [:li [item type id]]))])
+  ([type]
+   (items type @(rf/subscribe [::subs/filtered type])))
+
+  ([type ids]
+   [:ul
+    (for [id ids]
+      ^{:key id}
+      [:li [item type id]])]))
