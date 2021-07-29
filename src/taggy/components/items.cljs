@@ -11,7 +11,7 @@
 
 (defn- item
   [type id]
-  (let [data @(rf/subscribe [::subs/item type id])]
+  (let [data @(rf/subscribe [::subs/datas type id])]
     [:<>
      [:h4 (:title data)]
      [tag-list (:tags data)]]))
