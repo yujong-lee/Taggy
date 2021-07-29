@@ -15,3 +15,5 @@
 /.shadow-cljs/
 
 .calva/output-window/output.calva-repl
+
+.lsp
