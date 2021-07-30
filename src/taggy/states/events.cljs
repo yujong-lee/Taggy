@@ -47,7 +47,7 @@
  ::select-tab
  (fn [db [_ new-type-id]]
    (let [types           (:all-types db)
-         new-type-label  (find-label-by-type-id types new-type-id)]
+         new-type-label  (find-label-by-type-id new-type-id types)]
      (if (= new-type-label :+)
        (update-in db [:all-types] #(conj %1 {:id :new :label :new})) ;; Todo
        (assoc-in db [:current-type] {:id new-type-id
