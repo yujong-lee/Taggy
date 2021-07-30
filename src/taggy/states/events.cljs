@@ -13,6 +13,15 @@
    str
    keyword))
 
+(defn find-label-by-type-id
+  [id types]
+  (if (= id :0)
+    :+
+    (-> #(= id (:id %1))
+        (filter types)
+        first
+        :label)))
+
 (rf/reg-event-db
  ::initialize-db
  (fn [_ _]
@@ -38,12 +47,7 @@
  ::select-tab
  (fn [db [_ new-type-id]]
    (let [types           (:all-types db)
-         new-type-label  (if (= new-type-id :0)
-                           :+ ;; Todo
-                           (-> #(= new-type-id (:id %1))
-                               (filter types)
-                               first
-                               :label))]
+         new-type-label  (find-label-by-type-id types new-type-id)]
      (if (= new-type-label :+)
        (update-in db [:all-types] #(conj %1 {:id :new :label :new})) ;; Todo
        (assoc-in db [:current-type] {:id new-type-id
