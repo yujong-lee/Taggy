@@ -5,25 +5,19 @@
 
    [taggy.macros :refer-macros [reg-sub-getter]]))
 
-(reg-sub-getter "field-ids" [:field-ids])
-(reg-sub-getter "field-values" [:field-values "id"])
+(reg-sub-getter ::field-ids [:field-ids])
+(reg-sub-getter ::field-values [:field-values "id"])
 
-(reg-sub-getter "current-type" [:current-type])
+(reg-sub-getter ::current-type [:current-type])
 
-(reg-sub-getter "all-types" [:all-types])
-(reg-sub-getter "all-tags" [:all-tags "type"])
+(reg-sub-getter ::all-types [:all-types])
+(reg-sub-getter ::all-tags [:all-tags "type"])
 
-(reg-sub-getter "datas" [:datas "type" "id"])
+(reg-sub-getter ::datas [:datas "type" "id"])
 
-(rf/reg-sub
- ::datas-of-type
- (fn [db [_ type]]
-   (get-in db [:datas type])))
+(reg-sub-getter ::datas-of-type [:datas "type"])
 
-(rf/reg-sub
- ::all-field-values
- (fn [db _]
-   (get-in db [:field-values])))
+(reg-sub-getter ::all-field-values [:field-values])
 
 (rf/reg-sub
  ::filtered

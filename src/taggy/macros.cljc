@@ -16,6 +16,6 @@
                     (into []))]
     
     `(rf/reg-sub
-      ~(-> *ns* ns-name name (keyword id))
+      ~id
       (fn [db# ~params]
         (get-in db# ~actual-path)))))
