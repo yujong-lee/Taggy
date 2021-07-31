@@ -1,20 +1,21 @@
 (ns taggy.macros)
 
 ;; Info: simple getter shorthend
-;; Usage: (reg-sub-getter "datas" ["type" "id"])
+;; Usage: (reg-sub-getter "name" [:datas :item "id"])
 ;; Expand: (rf/reg-sub
-;;          ::datas
+;;          ::name
 ;;          (fn [db [_ type id]]
-;;            (get-in db [:datas type id])))
-
+;;            (get-in db [:datas :item id])))
 (defmacro reg-sub-getter
-  [base sub-path]
+  [id path]
   (let [_ (gensym)
-        params (map gensym sub-path)
-        full-path (-> base keyword (cons params) vec)]
+        actual-path (mapv #(if (keyword? %1) %1 (gensym %1)) path)
+        params (->> actual-path
+                    (filter #(not (keyword? %1)))
+                    (cons _)
+                    (into []))]
     
     `(rf/reg-sub
-      ~(-> *ns* ns-name name (keyword base))
-      (fn [db# 
-           ~(->> params (cons _) (into []))]
-        (get-in db# ~full-path)))))
+      ~(-> *ns* ns-name name (keyword id))
+      (fn [db# ~params]
+        (get-in db# ~actual-path)))))
