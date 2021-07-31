@@ -6,24 +6,24 @@
    [taggy.macros :refer-macros [reg-sub-getter]]))
 
 (reg-sub-getter ::field-ids [:field-ids])
-(reg-sub-getter ::field-values [:field-values "id"])
+(reg-sub-getter ::field-values-of-id [:field-values "id"])
 
 (reg-sub-getter ::current-type [:current-type])
 
 (reg-sub-getter ::all-types [:all-types])
-(reg-sub-getter ::all-tags [:all-tags "type"])
+(reg-sub-getter ::all-tags-of-type [:all-tags "type"])
 
-(reg-sub-getter ::datas [:datas "type" "id"])
+(reg-sub-getter ::datas-of-type-id [:datas "type" "id"])
 
 (reg-sub-getter ::datas-of-type [:datas "type"])
 
-(reg-sub-getter ::all-field-values [:field-values])
+(reg-sub-getter ::field-values [:field-values])
 
 (rf/reg-sub
- ::filtered
+ ::filtered-items
  (fn [[_ type]]
    [(rf/subscribe [::datas-of-type type])
-    (rf/subscribe [::all-field-values])])
+    (rf/subscribe [::field-values])])
 
  (fn [[items fields] _]
    (let [ids

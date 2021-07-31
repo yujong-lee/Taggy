@@ -12,7 +12,7 @@
 
 (defn- item
   ([type id]
-     (item @(rf/subscribe [::subs/datas type id])))
+     (item @(rf/subscribe [::subs/datas-of-type-id type id])))
 
   ([data]
    [:<>
@@ -21,7 +21,7 @@
 
 (defn items
   ([type]
-   (items type @(rf/subscribe [::subs/filtered type])))
+   (items type @(rf/subscribe [::subs/filtered-items type])))
 
   ([type ids]
    [:ul

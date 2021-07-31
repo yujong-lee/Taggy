@@ -11,7 +11,7 @@
 
 (defn- control
   ([type id]
-   (let [options        @(rf/subscribe [::subs/all-tags type])
+   (let [options        @(rf/subscribe [::subs/all-tags-of-type type])
          handle-change  #(rf/dispatch [::events/update-field id %2])]
      [control id options handle-change]))
   
