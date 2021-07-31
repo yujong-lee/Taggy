@@ -1,10 +1,10 @@
 (ns taggy.macros)
 
 ;; Info: simple getter shorthend
-;; Usage: (reg-sub-getter "name" [:datas :item "id"])
+;; Usage: (reg-sub-getter ::name [:datas :item "id"])
 ;; Expand: (rf/reg-sub
 ;;          ::name
-;;          (fn [db [_ type id]]
+;;          (fn [db [_ id]]
 ;;            (get-in db [:datas :item id])))
 (defmacro reg-sub-getter
   [id path]
