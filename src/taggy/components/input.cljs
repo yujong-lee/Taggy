@@ -43,8 +43,8 @@
                              [control type id]]])
 
                [button
-                :src              (at)
-                :label            "+"
-                :on-click          handle-click
-                :style {:height "30px"
-                        :width "100%"}]]]))
+                :src       (at)
+                :label     "+"
+                :on-click  handle-click
+                :style     {:height "30px"
+                            :width "100%"}]]]))

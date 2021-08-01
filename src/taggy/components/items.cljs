@@ -1,5 +1,7 @@
 (ns taggy.components.items
   (:require [re-frame.core :as rf]
+            [re-com.core :refer [title label at]]
+
             
             [taggy.states.subs :as subs]))
 
@@ -8,7 +10,7 @@
   [:<>
    (for [element list]
      ^{:key (gensym element)}
-     [:div element])])
+     [label :src (at) :label element])])
 
 (defn- item
   ([type id]
@@ -16,7 +18,7 @@
 
   ([data]
    [:<>
-    [:h4 (:title data)]
+    [title :src (at) :label (:title data) :level :level3]
     [tag-list (:tags data)]]))
 
 (defn items
