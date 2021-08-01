@@ -20,7 +20,7 @@
 (reg-sub-getter ::field-values [:field-values])
 
 (rf/reg-sub
- ::filtered-items
+ ::filtered-ids
  (fn [[_ type]]
    [(rf/subscribe [::datas-of-type type])
     (rf/subscribe [::field-values])])

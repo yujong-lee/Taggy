@@ -21,7 +21,7 @@
 
 (defn items
   ([type]
-   (items type @(rf/subscribe [::subs/filtered-items type])))
+   (items type @(rf/subscribe [::subs/filtered-ids type])))
 
   ([type ids]
    [:ul
