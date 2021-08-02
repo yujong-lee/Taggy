@@ -36,11 +36,11 @@
   ([type ids handle-click]
    [v-box :src (at)
     :gap "20px"
-    :children [(for [id ids]
-                 ^{:key id}
-                 [v-box :src (at)
-                  :children [[gap :size "20px"]
-                             [control type id]]])
+    :children [[v-box :src (at)
+                :gap "20px"
+                :children (for [id ids]
+                            ^{:key id}
+                            [control type id])]
 
                [button
                 :src       (at)
