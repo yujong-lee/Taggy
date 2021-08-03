@@ -16,10 +16,12 @@
   ([type id]
      (item @(rf/subscribe [::subs/datas-of-type-id type id])))
 
-  ([data]
+  ([{label :title tags :tags}]
    [:<>
-    [title :src (at) :label (:title data) :level :level3]
-    [tag-list (:tags data)]]))
+    [title :src (at)
+     :level :level3
+     :label label]
+    [tag-list tags]]))
 
 (defn items
   ([type]
