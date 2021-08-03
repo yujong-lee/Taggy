@@ -20,8 +20,7 @@
   [type]
   [v-box :src (at)
    :size "7"
-   :children [[gap :size "80px"]
-              [items type]]])
+   :children [[items type]]])
 
 (defn content
   ([]
