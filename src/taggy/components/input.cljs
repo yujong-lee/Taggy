@@ -4,7 +4,7 @@
 
             [reagent.core :as ra]
             [re-frame.core :as rf]
-            [re-com.core :refer [button v-box gap at]]
+            [re-com.core :refer [button v-box at]]
 
             [taggy.states.subs :as subs]
             [taggy.states.events :as events]))
