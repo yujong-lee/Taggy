@@ -2,7 +2,6 @@
   (:require [re-frame.core :as rf]
             [re-com.core :refer [title label at]]
 
-            
             [taggy.states.subs :as subs]))
 
 (defn- tag-list
@@ -16,7 +15,7 @@
   ([type id]
      (item @(rf/subscribe [::subs/datas-of-type-id type id])))
 
-  ([{label :label tags :tags}]
+  ([{:keys [label tags]}]
    [:<>
     [title :src (at)
      :level :level3
