@@ -16,7 +16,7 @@
   ([type id]
      (item @(rf/subscribe [::subs/datas-of-type-id type id])))
 
-  ([{label :title tags :tags}]
+  ([{label :label tags :tags}]
    [:<>
     [title :src (at)
      :level :level3
