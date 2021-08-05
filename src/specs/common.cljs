@@ -1,9 +1,7 @@
 (ns specs.common
   (:require [cljs.spec.alpha :as spec]))
 
-(spec/def ::id (spec/and
-                      keyword?
-                      #(-> %1 name js/parseInt nat-int?)))
+(spec/def ::id nat-int?)
 
 (spec/def ::label string?)
 

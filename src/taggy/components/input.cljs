@@ -16,7 +16,7 @@
      [control id options handle-change]))
   
   ([id options handle-change]
-   [:> Autocomplete {:id (str "input id : " (name id))
+   [:> Autocomplete {:id (str "input id : " id)
                      :multiple true
                      :free-solo true
                      :filter-selected-options true

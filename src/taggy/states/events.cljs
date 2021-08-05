@@ -3,16 +3,6 @@
    [re-frame.core :as rf]
    [taggy.states.db :as db]))
 
-(defn inc-id
-  [id]
-  (->
-   id
-   name
-   js/parseInt
-   inc
-   str
-   keyword))
-
 (defn find-label-by-type-id
   [id types]
   (if (= id :0)
@@ -36,7 +26,7 @@
  ::add-field
  (fn [db _]
    (update-in db [:field-ids]
-              #(vec (conj %1 (-> %1 last inc-id))))))
+              #(vec (conj %1 (-> %1 last inc))))))
 
 (rf/reg-event-db
  ::update-data
@@ -49,7 +39,7 @@
    (let [types           (:all-types db)
          new-type-label  (find-label-by-type-id new-type-id types)]
      (if (= new-type-label :+)
-       (update-in db [:all-types] #(conj %1 {:id :new :label :new})) ;; Todo
+       (update-in db [:all-types] #(conj %1 {:id 10 :label :new})) ;; Todo
        (assoc-in db [:current-type] {:id new-type-id
                                      :label new-type-label})))))
 
