@@ -26,7 +26,7 @@
                              :items (spec/map-of ::common/id ::common/item)
                              :fields (spec/map-of ::common/id ::common/tags)))
          :useless any?)
-  :ret (spec/coll-of ::common/items :kind vector?))
+  :ret ::common/items)
 
 (defn filter-items
   [[items fields] _]

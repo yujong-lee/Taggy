@@ -9,4 +9,6 @@
 
 (spec/def ::item (spec/keys :req-un [::label ::tags]))
 
-(spec/def ::items (spec/keys :req-un [::id ::label ::tags]))
+(spec/def ::items (spec/coll-of
+                   (spec/keys :req-un [::id ::label ::tags])
+                   :kind vector?))
