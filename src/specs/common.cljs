@@ -8,3 +8,5 @@
 (spec/def ::tags (spec/coll-of string? :kind set?))
 
 (spec/def ::item (spec/keys :req-un [::label ::tags]))
+
+(spec/def ::items (spec/keys :req-un [::id ::label ::tags]))

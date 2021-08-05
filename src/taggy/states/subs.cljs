@@ -20,13 +20,13 @@
 
 (reg-sub-getter ::field-values [:field-values])
 
-;; (spec/fdef filter-items
-;;   :args (spec/cat
-;;          :useful (spec/spec (spec/cat
-;;                              :items (spec/map-of ::common/id ::common/item)
-;;                              :fields (spec/map-of ::common/id ::common/tags)))
-;;          :useless any?)
-;;   :ret ((spec/coll-of ::common/items :kind vector?)))
+(spec/fdef filter-items
+  :args (spec/cat
+         :useful (spec/spec (spec/cat
+                             :items (spec/map-of ::common/id ::common/item)
+                             :fields (spec/map-of ::common/id ::common/tags)))
+         :useless any?)
+  :ret ((spec/coll-of ::common/items :kind vector?)))
 
 (defn filter-items
   [[items fields] _]
@@ -39,7 +39,7 @@
                   (merge {:id (first item)} (second item)))]
     (vec result)))
 
-;; (stest/instrument `filter-items)
+(stest/instrument `filter-items)
 
 (rf/reg-sub
  ::filtered-items
