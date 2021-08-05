@@ -18,7 +18,7 @@
    db/default-db))
 
 (rf/reg-event-db
- ::update-field ;; Todo : better name like I did "select-tab"?
+ ::update-field
  (fn [db [_ id value]]
    (assoc-in db [:field-values id] (into #{} value))))
 
@@ -29,11 +29,6 @@
               #(vec (conj %1 (-> %1 last inc))))))
 
 (rf/reg-event-db
- ::update-data
- (fn [db [_ type id data]]
-   (assoc-in db [:data type id] data)))
-
-(rf/reg-event-db
  ::select-tab
  (fn [db [_ new-type-id]]
    (let [types           (:all-types db)
@@ -42,8 +37,3 @@
        (update-in db [:all-types] #(conj %1 {:id 10 :label :new})) ;; Todo
        (assoc-in db [:current-type] {:id new-type-id
                                      :label new-type-label})))))
-
-(rf/reg-event-db
- ::update-all-types
- (fn [db [_ types]]
-   (assoc-in db [:all-types] types)))
