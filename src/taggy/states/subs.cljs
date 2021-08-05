@@ -2,7 +2,10 @@
   (:require
    [re-frame.core :as rf]
    [clojure.set :as set]
+   [cljs.spec.alpha :as spec]
+   [cljs.spec.test.alpha :as stest]
 
+   [specs.common :as common]
    [taggy.macros :refer-macros [reg-sub-getter]]))
 
 (reg-sub-getter ::field-ids [:field-ids])
@@ -19,20 +22,32 @@
 
 (reg-sub-getter ::field-values [:field-values])
 
+(spec/fdef filter-ids
+  :args (spec/cat
+         :useful (spec/spec (spec/cat
+                             :items (spec/map-of ::common/id ::common/item)
+                             :fields (spec/map-of ::common/id ::common/tags)))
+         :useless any?)
+  :ret (spec/coll-of ::common/id :kind set?))
+
+(defn filter-ids
+  [[items fields] _]
+  (let [ids
+        (for [item items
+              field-tags (vals fields)
+              :let [item-tags (:tags (second item))
+                    item-id (first item)]
+              :when (and
+                     (seq field-tags)
+                     (empty? (set/difference field-tags item-tags)))]
+          item-id)]
+    (into #{} ids)))
+
+(stest/instrument `filter-ids)
+
 (rf/reg-sub
  ::filtered-ids
  (fn [[_ type]]
    [(rf/subscribe [::datas-of-type type])
     (rf/subscribe [::field-values])])
-
- (fn [[items fields] _]
-   (let [ids
-         (for [item items
-               field-tags (vals fields)
-               :let [item-tags (:tags (second item))
-                     item-id (first item)]
-               :when (and
-                      (seq field-tags)
-                      (empty? (set/difference field-tags item-tags)))]
-           item-id)]
-     (into #{} ids))))
+ filter-ids)
