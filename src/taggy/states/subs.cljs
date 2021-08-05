@@ -17,6 +17,7 @@
 (reg-sub-getter ::all-tags-of-type [:all-tags "type"])
 
 (reg-sub-getter ::datas-of-type-id [:datas "type" "id"])
+;; actually id is suffifient. need some fix
 
 (reg-sub-getter ::datas-of-type [:datas "type"])
 
@@ -51,3 +52,20 @@
    [(rf/subscribe [::datas-of-type type])
     (rf/subscribe [::field-values])])
  filter-ids)
+
+
+(rf/reg-sub
+ ::filtered-items
+ (fn [[_ type]]
+   [(rf/subscribe [::datas-of-type type])
+    (rf/subscribe [::field-values])])
+
+ (fn [[items fields] _]
+   (let [result  (for [item items
+                       field-tags (vals fields)
+                       :let [item-tags (:tags (second item))]
+                       :when (and
+                              (seq field-tags)
+                              (empty? (set/difference field-tags item-tags)))]
+                   (merge {:id (first item)} (second item)))]
+     (vec result))))

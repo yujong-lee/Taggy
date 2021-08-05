@@ -6,7 +6,7 @@
 
             [taggy.components.tab :refer [tab]]
             [taggy.components.input :as input]
-            [taggy.components.items :refer [items]]))
+            [taggy.components.table :refer [table]]))
 
 (defn- browse-area
   [type]
@@ -20,7 +20,7 @@
   [type]
   [v-box :src (at)
    :size "7"
-   :children [[items type]]])
+   :children [[table type]]])
 
 (defn content
   ([]
@@ -32,4 +32,5 @@
     :children [[gap :size "60px"]
                [browse-area type]
                [gap :size "1"]
-               [result-area type]]]))
+               [result-area type]
+               [gap :size "60px"]]]))
