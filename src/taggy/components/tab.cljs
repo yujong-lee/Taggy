@@ -9,14 +9,12 @@
   ([]
   (let [types          @(rf/subscribe [::subs/all-types])
         {:keys [id]}   @(rf/subscribe [::subs/current-type])
-        handle-change  #(rf/dispatch [::events/select-tab %1])]
+        handle-change  #(rf/dispatch [::events/toggle-openness %1])]
     [tab
      types id handle-change]))
   
   ([types id handle-change]
-   (let [add-button             {:id :0 :label :+}
-         tabs                   (conj types add-button)]
      [horizontal-tabs
       :model      id
-      :tabs       tabs
-      :on-change  handle-change])))
+      :tabs       types
+      :on-change  handle-change]))

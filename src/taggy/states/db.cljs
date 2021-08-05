@@ -5,23 +5,23 @@
    :field-ids [0]
    :field-values {}
 
-   :current-type {:id 1 :label :abcd} 
+   :current-type {:id 1 :label :Private} 
 
-   :all-types [{:id 1 :label :abcd}
-               {:id 2 :label :efgh}]
-   :all-tags {:abcd #{"one" "two" "three"}
-              :efgh #{"A" "B" "C"}}
+   :all-types [{:id 0 :label :Public}
+               {:id 1 :label :Private}]
+   :all-tags {:Public #{"one" "two" "three"}
+              :Private #{"A" "B" "C"}}
 
-   :datas {:abcd {0 {:label "task0" :tags #{"one" "two"}}
-                  1 {:label "task1" :tags #{"two"}}
-                  2 {:label "task2" :tags #{"three"}}
-                  3 {:label "task3" :tags #{"one" "three"}}
-                  4 {:label "task4" :tags #{"one" "two"}}}
-           :efgh {5 {:label "aaaaa" :tags #{"A" "B"}}
-                  6 {:label "bbbbb" :tags #{"A"}}
-                  7 {:label "ccccc" :tags #{"B"}}
-                  8 {:label "ddddd" :tags #{"B" "C"}}
-                  9 {:label "eeeee" :tags #{"C" "A"}}}}})
+   :datas {:Public  {0 {:label "task0" :tags #{"one" "two"}}
+                     1 {:label "task1" :tags #{"two"}}
+                     2 {:label "task2" :tags #{"three"}}
+                     3 {:label "task3" :tags #{"one" "three"}}
+                     4 {:label "task4" :tags #{"one" "two"}}}
+           :Private {5 {:label "aaaaa" :tags #{"A" "B"}}
+                     6 {:label "bbbbb" :tags #{"A"}}
+                     7 {:label "ccccc" :tags #{"B"}}
+                     8 {:label "ddddd" :tags #{"B" "C"}}
+                     9 {:label "eeeee" :tags #{"C" "A"}}}}})
 
 ;; TODO
 

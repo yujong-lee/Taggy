@@ -3,15 +3,6 @@
    [re-frame.core :as rf]
    [taggy.states.db :as db]))
 
-(defn find-label-by-type-id
-  [id types]
-  (if (= id :0)
-    :+
-    (-> #(= id (:id %1))
-        (filter types)
-        first
-        :label)))
-
 (rf/reg-event-db
  ::initialize-db
  (fn [_ _]
@@ -29,11 +20,7 @@
               #(vec (conj %1 (-> %1 last inc))))))
 
 (rf/reg-event-db
- ::select-tab
- (fn [db [_ new-type-id]]
-   (let [types           (:all-types db)
-         new-type-label  (find-label-by-type-id new-type-id types)]
-     (if (= new-type-label :+)
-       (update-in db [:all-types] #(conj %1 {:id 10 :label :new})) ;; Todo
-       (assoc-in db [:current-type] {:id new-type-id
-                                     :label new-type-label})))))
+ ::toggle-openness
+ (fn [db [_ id]]
+   (let [label  ({0 :Public 1 :Private} id)]
+       (assoc-in db [:current-type] {:id id :label label}))))
