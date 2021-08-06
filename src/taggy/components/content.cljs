@@ -19,7 +19,8 @@
 (defn- result-area
   [type]
   [v-box :src (at)
-   :size "7"
+   :size "6"
+   :height "500px"
    :children [[table type]]])
 
 (defn content
@@ -31,6 +32,6 @@
    [h-box :src (at)
     :children [[gap :size "60px"]
                [browse-area type]
-               [gap :size "1"]
+               [gap :size "60px"]
                [result-area type]
                [gap :size "60px"]]]))
